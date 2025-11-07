@@ -21,19 +21,43 @@ app.get("/icon", (req, res) => {
 app.get("/omikuji1", (req, res) => {
   const num = Math.floor( Math.random() * 6 + 1 );
   let luck = '';
-  if( num==1 ) luck = '大吉';
-  else if( num==2 ) luck = '中吉';
-
-  res.send( '今日の運勢は' + luck + 'です' );
+  if( num==1 ) luck = 'すり抜けなし星5が早めにあたる';
+  else if( num==2 ) luck = 'すり抜けなし天井で星5があたる';
+  else if(num==3) luck = 'すり抜けするけど早めに星5があたる';
+  else if(num==4) luck = 'すり抜け＋１天井で星5が当たる';
+  else if(num==5) luck = 'すり抜け＋２天井';
+  else if(num==6) luck = '今日は引いたら死にます';
+  res.send( '今日の運勢は' + luck + 'です' )
 });
 
 app.get("/omikuji2", (req, res) => {
   const num = Math.floor( Math.random() * 6 + 1 );
   let luck = '';
-  if( num==1 ) luck = '大吉';
-  else if( num==2 ) luck = '中吉';
-
+  if( num==1 ) luck = 'すり抜けなし星5が早めにあたる';
+  else if( num==2 ) luck = 'すり抜けなし天井で星5があたる';
+  else if(num==3) luck = 'すり抜けするけど早めに星5があたる';
+  else if(num==4) luck = 'すり抜け＋１天井で星5が当たる';
+  else if(num==5) luck = 'すり抜け＋２天井';
+  else if(num==6) luck = '今日は引いたら死にます';
   res.render( 'omikuji2', {result:luck} );
+});
+
+app.get("/omikuji3", (req, res) => {
+  const num = Math.floor( Math.random() * 6 + 1 );
+  let luck = '';
+  if( num==1 ) {luck = 'すり抜けなし星5が早めにあたる';
+    comment = 'ガチャ石放出の時！';}
+  else if( num==2 ) {luck = 'すり抜けなし天井で星5があたる';
+    comment = 'いつも通りって感じ';}
+  else if(num==3) {luck = 'すり抜けするけど早めに星5があたる';
+    comment = 'まあ許せるよね';}
+  else if(num==4) {luck = 'すり抜け＋１天井で星5が当たる';
+    comment = 'ははは...こういう時もあるさー';}
+  else if(num==5) {luck = 'すり抜け＋２天井';
+    comment = 'スマホ叩き割りたい．ふざけるなー🤬';}
+  else if(num==6) {luck = '今日は引いたら死にます';
+    comment = '警告はしたよ？それでも君は引くんだね';}
+  res.render( 'omikuji3',{result:luck,comment:comment} );
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
