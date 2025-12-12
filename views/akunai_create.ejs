@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>新規オペレーター登録</title>
+  <link rel="stylesheet" href="/akunai.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="form-container">
+    <h1 class="form-title">新規オペレーター登録</h1>
+    
+    <form action="/akunai/create" method="POST" class="operator-form">
+      
+      <div class="form-group">
+        <label>コードネーム</label>
+        <input type="text" name="codename" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>レアリティ</label>
+          <input type="number" name="star" min="1" max="6" value="6">
+        </div>
+        <div class="form-group">
+          <label>職業 (例: 前衛)</label>
+          <input type="text" name="job">
+        </div>
+        <div class="form-group">
+          <label>職分 (例: 剣豪)</label>
+          <input type="text" name="job2">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>誕生日</label>
+          <input type="text" name="birth">
+        </div>
+        <div class="form-group">
+          <label>CV</label>
+          <input type="text" name="CV">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>画像URL</label>
+        <input type="text" name="image" placeholder="/images/ファイル名.jpg">
+      </div>
+
+      <div class="form-group">
+        <label>個人履歴</label>
+        <textarea name="personal_history" rows="5"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>編集者のコメント（推しポイント）</label>
+        <textarea name="my_comment" rows="4"></textarea>
+      </div>
+
+      <div class="button-area">
+        <a href="/akunai" class="cancel-btn">キャンセル</a>
+        <button type="submit" class="submit-btn">登録する</button>
+      </div>
+
+    </form>
+  </div>
+</body>
+</html>

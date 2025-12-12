@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>オペレーター名鑑</title>
+  <link rel="stylesheet" href="/akunai.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <header class="main-header">
+    <h1>アークナイツ　キャラクター紹介</h1>
+  </header>
+
+  <div class="container">
+    <% aknai.forEach(function(char, i) { %>
+      
+        <!-- ★ここに wrapper を使うことで横幅を固定し、横並びさせます -->
+        <div class="character-card-wrapper">
+          
+          <!-- カード部分 -->
+          <a href="/akunai/<%= i %>" class="card-link">
+            <div class="character-card">
+              <div class="card-image-wrapper">
+                 <img src="/images/<%= char.codename %>.jpg" alt="<%= char.codename %>" class="card-image" onerror="this.style.display='none'">
+                 <div class="rarity-badge">★<%= char.star %></div>
+              </div>
+              <div class="card-info">
+                <h2 class="card-name"><%= char.codename %></h2>
+                <div class="card-specs">
+                  <span class="spec-tag"><%= char.job %></span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- 削除ボタン (カードの下に配置) -->
+          <form action="/akunai/<%= i %>/delete" method="POST" class="delete-form" onsubmit="return confirm('本当に削除しますか？');">
+            <button type="submit" class="delete-btn">削除</button>
+          </form>
+
+        </div>
+
+    <% }); %>
+  </div>
+
+  <!-- 新規追加ボタン -->
+  <div class="add-button-area">
+    <a href="/akunai/create" class="add-btn">
+      <span>+</span> 新規オペレーター登録
+    </a>
+  </div>
+
+</body>
+</html>

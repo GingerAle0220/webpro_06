@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title><%= data.codename %> - 詳細</title>
+  <!-- CSSファイル名は実際のファイル名に合わせてください -->
+  <link rel="stylesheet" href="/akunai.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <div class="detail-container">
+    
+    <!-- 戻るボタン -->
+    <div class="nav-area">
+      <a href="/akunai" class="back-btn">◀ 一覧に戻る</a>
+    </div>
+
+    <!-- ★クラス名をCSSに合わせて 'detail-card' に修正 -->
+    <div class="detail-card">
+      
+      <!-- 装飾用の黄色い線 -->
+      <div class="yellow-line"></div>
+
+      <!-- ▼ 左側エリア (CSS: .left-column) ▼ -->
+      <div class="left-column">
+        <h1 class="detail-title"><%= data.codename %></h1>
+        
+        <div class="detail-image-box">
+          <img src="/images/<%= data.codename %>.jpg" alt="<%= data.codename %>" class="detail-image">
+        </div>
+        
+        <table class="spec-table">
+          <tr>
+            <th>レアリティ</th>
+            <td>★<%= data.star %></td>
+          </tr>
+          <tr>
+            <th>職分</th>
+            <td><%= data.job %> (<%= data.job2 %>)</td>
+          </tr>
+          <tr>
+            <th>誕生日</th>
+            <td><%= data.birth %></td>
+          </tr>
+          <tr>
+            <th>CV</th>
+            <td><%= data.CV %></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- ▼ 右側エリア (CSS: .right-column) ▼ -->
+      <div class="right-column">
+        <div class="text-block">
+          <h3>個人履歴</h3>
+          <p><%= data.personal_history %></p>
+        </div>
+        
+        <div class="text-block comment-block">
+          <h3>編集者のコメント</h3>
+          <div class="comment-box">
+            <p><%= data.my_comment %></p>
+          </div>
+        </div>
+
+        <div class="footer-sign">
+          RHODES ISLAND TERMINAL // AUTH: DOCTOR
+        </div>
+      </div>
+      <!-- ★ここに編集ボタンを追加しました -->
+    <div class="edit-area">
+      <a href="/akunai/<%= id %>/edit" class="edit-btn">データを編集する</a>
+    </div>
+      
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>編集 - <%= data.codename %></title>
+  <link rel="stylesheet" href="/akunai.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <header class="main-header">
+    <h1>OPERATOR UPDATE</h1>
+  </header>
+
+  <div class="form-container">
+    <h2 class="form-title">データ編集: <%= data.codename %></h2>
+    
+    <!-- 更新用フォーム -->
+    <form action="/akunai/<%= id %>/update" method="POST">
+      
+      <div class="form-group">
+        <label>コードネーム</label>
+        <input type="text" name="codename" value="<%= data.codename %>" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>レアリティ</label>
+          <input type="number" name="star" min="1" max="6" value="<%= data.star %>">
+        </div>
+        <div class="form-group">
+          <label>職業</label>
+          <input type="text" name="job" value="<%= data.job %>">
+        </div>
+        <div class="form-group">
+          <label>職分</label>
+          <input type="text" name="job2" value="<%= data.job2 %>">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>誕生日</label>
+          <input type="text" name="birth" value="<%= data.birth %>">
+        </div>
+        <div class="form-group">
+          <label>CV</label>
+          <input type="text" name="CV" value="<%= data.CV %>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>画像URL</label>
+        <input type="text" name="image" value="<%= data.image %>" placeholder="/images/ファイル名.jpg">
+      </div>
+
+      <div class="form-group">
+        <label>個人履歴</label>
+        <textarea name="personal_history" rows="6"><%= data.personal_history %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>編集者のコメント（推しポイント）</label>
+        <textarea name="my_comment" rows="4"><%= data.my_comment %></textarea>
+      </div>
+
+      <div class="button-area">
+        <!-- 戻る先は一覧ではなく詳細ページの方が親切なので変更 -->
+        <a href="/akunai/<%= id %>" class="cancel-btn">CANCEL</a>
+        <button type="submit" class="submit-btn">UPDATE</button>
+      </div>
+
+    </form>
+  </div>
+
+</body>
+</html>

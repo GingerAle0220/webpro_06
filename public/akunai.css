@@ -1,0 +1,522 @@
+/* --- 全体設定 --- */
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-image: radial-gradient(#2a2a2a 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* --- ヘッダー --- */
+.main-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.main-header h1 {
+    display: inline-block;
+    border-bottom: 3px solid #ffd700;
+    padding-bottom: 10px;
+    letter-spacing: 0.1em;
+}
+
+/* --- 一覧ページ (index.ejs) 用 --- */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* カードリンク全体 */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    width: 300px;
+}
+
+.character-card {
+    background: #252525;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-color: #ffd700;
+}
+
+.card-image-wrapper {
+    position: relative;
+    height: 350px;
+    background: #000;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+.rarity-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ffd700;
+    color: #000;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.card-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-name {
+    margin: 0 0 10px 0;
+    font-size: 1.4em;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+}
+
+.card-specs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.spec-tag {
+    background: #333;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    color: #bbb;
+}
+
+.click-hint {
+    font-size: 0.8em;
+    color: #ffd700;
+    margin: 0;
+}
+
+/* --- 詳細ページ (detail.ejs) 用 --- */
+.detail-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.nav-area {
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    color: #aaa;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #aaa;
+    padding: 5px 15px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+.back-btn:hover {
+    background: #aaa;
+    color: #000;
+}
+
+.detail-card {
+    background: rgba(30, 30, 30, 0.95);
+    border: 1px solid #555;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.8);
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+/* スマホ対応：画面が狭いときは縦並び */
+@media (max-width: 768px) {
+    .detail-card {
+        flex-direction: column;
+    }
+    .left-column, .right-column {
+        width: 100%;
+        border: none;
+    }
+}
+
+.yellow-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: #ffd700;
+    z-index: 10;
+}
+
+/* 左カラム */
+.left-column {
+    width: 40%;
+    border-right: 1px solid #444;
+    padding: 30px;
+    background: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-title {
+    font-size: 2em;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.1em;
+}
+
+.detail-image-box {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 2px solid #444;
+}
+
+.detail-image {
+    width: 100%;
+    display: block;
+}
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.spec-table th {
+    text-align: left;
+    color: #888;
+    padding: 8px 0;
+    border-bottom: 1px solid #444;
+    font-size: 0.9em;
+}
+
+.spec-table td {
+    text-align: right;
+    font-weight: bold;
+    padding: 8px 0;
+    border-bottom: 1px solid #444;
+}
+
+/* 右カラム */
+.right-column {
+    width: 60%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text-block h3 {
+    color: #ccc;
+    border-left: 4px solid #888;
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+.text-block p {
+    line-height: 1.8;
+    color: #ddd;
+    font-size: 0.95em;
+    text-align: justify;
+}
+
+.comment-block h3 {
+    border-left-color: #00bfff; /* シアン色 */
+    color: #00bfff;
+}
+
+.comment-box {
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 6px;
+    font-style: italic;
+}
+
+.footer-sign {
+    text-align: right;
+    font-family: monospace;
+    color: #555;
+    font-size: 0.8em;
+    margin-top: 30px;
+}
+
+/* カードと削除ボタンをまとめる枠 */
+.character-card-wrapper {
+    width: 300px;        /* カードの幅をここで指定 */
+    position: relative;
+    display: flex;       /* 中身を縦に積む */
+    flex-direction: column;
+}
+
+/* リンク自体の幅は親(wrapper)に合わせる */
+.card-link {
+    width: 100%;
+}
+
+/* 削除ボタンフォーム */
+.delete-form {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.delete-btn {
+    background: #444;
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+    padding: 5px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.2s;
+}
+.delete-btn:hover {
+    background: #ff6b6b;
+    color: white;
+}
+
+/* 新規追加ボタンのデザイン */
+.add-button-area {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+.add-btn {
+    display: inline-block;
+    background: #ffd700;
+    color: #000;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+.add-btn:hover {
+    background: #fff;
+}
+/* フォーム全体を囲むコンテナ */
+.form-container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: rgba(37, 37, 37, 0.95); /* 半透明の黒 */
+    padding: 40px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 左端の装飾ライン */
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #ffd700; /* アークナイツカラー */
+}
+
+/* タイトル */
+.form-title {
+    color: #fff;
+    border-bottom: 2px solid #555;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    letter-spacing: 0.1em;
+    font-family: 'Oswald', sans-serif; /* もしフォントがあれば */
+}
+
+/* 入力エリアのまとまり */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffd700; /* ラベルを黄色に */
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+/* 入力欄のデザイン */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 0; /* 角張らせる */
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #ffd700;
+    outline: none;
+    background-color: #000;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.form-group textarea {
+    line-height: 1.6;
+    resize: vertical;
+}
+
+/* 横並びレイアウト用 */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+.form-row .form-group {
+    flex: 1; /* 均等割付 */
+}
+
+/* ボタンエリア */
+.button-area {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between; /* キャンセルと登録を左右に離す */
+    align-items: center;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+}
+
+/* 登録・更新ボタン */
+.submit-btn {
+    background: #ffd700;
+    color: #000;
+    border: none;
+    padding: 12px 40px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: 0.3s;
+    /* 斜めにカットされたようなデザインにする場合 */
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+    padding-left: 50px; /* 形に合わせて調整 */
+}
+
+.submit-btn:hover {
+    background: #fff;
+    transform: translateX(5px);
+}
+
+/* キャンセルボタン */
+.cancel-btn {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: 0.3s;
+    border: 1px solid transparent;
+    padding: 8px 15px;
+}
+
+.cancel-btn:hover {
+    color: #fff;
+    border-color: #555;
+    background: #333;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-container {
+        padding: 20px;
+        margin: 20px 10px;
+    }
+}
+
+/* 編集エリア全体 */
+.edit-area {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #444; /* 区切り線を追加 */
+    text-align: right;
+}
+
+/* 編集ボタン本体 */
+.edit-btn {
+    display: inline-block;
+    position: relative;
+    padding: 10px 30px;
+    
+    /* ベースの色設定 */
+    color: #00bfff; /* ネオンブルーの文字 */
+    background: transparent;
+    border: 2px solid #00bfff; /* 枠線 */
+    
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.9em;
+    
+    /* アニメーション用 */
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+/* 角を少し削ってテック感（斜めカット）を出す */
+.edit-btn {
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+/* ホバー時の背景アニメーション（左から色が埋まる） */
+.edit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: #00bfff;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+/* ホバー時の状態 */
+.edit-btn:hover {
+    color: #000; /* 文字を黒に */
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.5); /* 発光効果 */
+}
+
+.edit-btn:hover::before {
+    width: 100%; /* 背景を埋める */
+}
+
+/* アイコンの調整 */
+.edit-btn .icon {
+    margin-right: 8px;
+    font-size: 1.1em;
+}
