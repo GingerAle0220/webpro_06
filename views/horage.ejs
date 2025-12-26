@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horror Game Corridor</title>
+    <link rel="stylesheet" href="/css/horage.css">
+</head>
+<body>
+
+    <div class="corridor-container">
+        
+        <!-- 背景装飾 -->
+        <div class="ceiling"></div>
+        <div class="floor"></div>
+        
+        <!-- 看板 -->
+        <div class="signboard">
+            <h1>オススメホラーゲーム紹介</h1>
+            <p>DO NOT ENTER IF YOU ARE SCARED...</p>
+        </div>
+
+        <!-- ドアのリスト -->
+        <div class="door-list">
+            
+            <% horage.forEach(function(game) { %>
+                <div class="door-wrapper">
+                    <!-- ドアをクリックで詳細へ -->
+                    <a href="/horage/<%= game.number %>">
+                        <div class="door">
+                            <div class="room-number"><%= game.number %></div>
+                        </div>
+                    </a>
+                    
+                    <!-- 削除ボタン -->
+                    <form action="/horage/<%= game.number %>/delete" method="POST" class="delete-form" onsubmit="return confirm('本当にこの部屋を封鎖しますか...？');">
+                        <button type="submit" class="delete-btn">封鎖 (削除)</button>
+                    </form>
+                </div>
+            <% }); %>
+
+            <!-- 新規追加用のドア -->
+            <div class="door-wrapper">
+                <a href="/horage/create">
+                    <div class="door create-door">
+                        <span>+</span>
+                        <div style="font-size:0.8rem;">NEW ROOM</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

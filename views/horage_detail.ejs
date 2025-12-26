@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= data.game_name %></title>
+    <link rel="stylesheet" href="/css/horage.css">
+</head>
+<body>
+
+    <!-- ゲーム画像を背景に設定 -->
+    <!-- 画像がない場合は真っ暗になります -->
+    <div class="detail-bg" style="background-image: url('<%= data.image %>');">
+        
+        <div class="detail-overlay">
+            
+            <!-- 背景の部屋番号 -->
+            <div class="detail-number"><%= data.number %></div>
+
+            <div class="detail-content">
+                
+                <h1 class="game-title"><%= data.game_name %></h1>
+                <div class="developer-name">Developer: <%= data.developer %></div>
+
+                <!-- ゲーム概要 -->
+                <div class="info-block">
+                    <h3>GAME OVERVIEW</h3>
+                    <p><%= data.overview %></p>
+                </div>
+
+                <!-- コメント -->
+                <div class="info-block">
+                    <h3>MY COMMENT</h3>
+                    <p><%= data.my_comment2 %></p>
+                </div>
+
+                <!-- アクションボタン -->
+                <div class="action-area">
+                    <a href="/horage" class="btn">一覧に戻る</a>
+                    <a href="/horage/<%= data.number %>/edit" class="btn">編集する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

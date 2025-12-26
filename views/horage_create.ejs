@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Room</title>
+    <link rel="stylesheet" href="/css/horage.css">
+</head>
+<body>
+
+    <div class="form-wrapper">
+        <h2 style="color:#c00; text-align:center; margin-bottom:30px;">新たな恐怖を記録する</h2>
+        
+        <form action="/horage/create" method="POST">
+            
+            <div class="form-group">
+                <label>Room Number (番号: 005など)</label>
+                <input type="text" name="number" required>
+            </div>
+
+            <div class="form-group">
+                <label>Game Name</label>
+                <input type="text" name="game_name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Developer</label>
+                <input type="text" name="developer">
+            </div>
+
+            <div class="form-group">
+                <label>Image URL (public/images/内のパス)</label>
+                <input type="text" name="image" placeholder="/images/ファイル名.jpg">
+            </div>
+
+            <div class="form-group">
+                <label>Overview</label>
+                <textarea name="overview" rows="5"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>My Comment</label>
+                <textarea name="my_comment2" rows="4"></textarea>
+            </div>
+
+            <div style="text-align:right;">
+                <a href="/horage" style="color:#888; margin-right:20px;">キャンセル</a>
+                <button type="submit" class="btn" style="background:#500;">登録</button>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

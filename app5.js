@@ -99,7 +99,7 @@ app.get("/keiyo_add",(req,res)=>{
 });
 
 
-
+//ここからアークナイツ
 let aknai = [
   { star:6, job:"前衛", codename:"アイリーニ",job2:"剣豪",birth:"1月3日",CV:"釘宮理恵",personal_history:"アイリーニは、イベリアの大審問官ダリオの弟子であり、以前まで自身も審問官の職に就いていた。彼女はイベリアの歴史、法律、人文、地理などに関して豊かな知識を有している。「狂人号」事件以降、アイリーニは審問官の職を辞して、ケルシー直々の推薦により、現在は裁判所のトランスポーターとしてロドスとの協力協定を結び、海からの脅威に備えている。",my_comment:"私が語る一番の魅力は声が大変可愛らしいということです。厳格な審問官というイメージとはかけ離れた可愛い声に骨抜きになり、このゲームを始めました。戦闘面でも敵の防御力を一定数無視して攻撃してくれるのでどこにでも起用できますし、スキル3の高火力は使っていて楽しいです。（見た目について触れるならば頭上に黒いツノが二つついています。あと白い靴下は私を救う）"},
   { star:6, job:"狙撃", codename:"ウィシャデル",job2:"投擲手",birth:"本人は忘れたと主張",CV:"竹達彩奈",personal_history:"サルカズ傭兵のリーダーであるＷは、正式にウィシャデルと改名した。ロンディニウム戦争中、ロドスロンディニウム特別行動隊と密に協力し、幾度となく軍事委員会の作戦を阻止した。",my_comment:"全キャラの中で最強と言ってもいい環境破壊性能をしています。ウィシャデルがいるだけで大抵のステージはクリアでき、圧倒的な火力と隠密性能でもはやチートです。また、アークナイツの中でも昔からいるキャラクターで愛着が湧いています。また、服装が短パンとそんな装備で大丈夫かと聴きたくなるような姿です。魅惑的な足が見れるのでいいんですが..."},
@@ -172,6 +172,122 @@ app.get("/akunai/:number", (req, res) => {
   const item = aknai[req.params.number];
   if (!item) return res.send("該当キャラクターが見つかりません。");
   res.render("akunai_detail", { data: item, id: req.params.number });
+});
+
+//ここからホラーゲーム
+let horage = [
+  {
+    number: "001",
+    game_name: "Garten of Banban",
+    developer: "Euphoric Brothers Ltd.",
+    overview: "秘密が隠された幼稚園に飛び込もう！かつては子供達の笑顔で溢れていたバンバン幼稚園．行方不明の謎を解き明かしながら恐怖から逃げきれ！",
+    my_comment2: "ガーテンオブバンバンは一番長く付き合ってきたゲームかもしれません．chapterの更新が不定期であり，時には半年待つこともありました．どんどん明らかになっていく謎と共に結末へのドキドキが止まりません！",
+    image: "/images/banban.jpg"
+  },
+  {
+    number: "002",
+    game_name: "Manny's",
+    developer: "Bonemeal Productions",
+    overview: "月のでない夜，無人島に取り残された漂流者の前に，突如ファストフード店が現れる．足を踏み入れたが最後，彼は最悪の運命に巻き込まれていく...！喰うか喰われるか，果たしてあなたは生き残れるか？！",
+    my_comment2: "このゲームの一番の魅力はストーリがとっても面白いことです！出てくる登場人物の良さ！！結末にも驚かされました．プレイヤースキルがあまりいらないことも魅力です．",
+    image: "/images/mannys.jpg"
+  },
+  {
+    number: "003",
+    game_name: "バイオハザード ヴィレッジ",
+    developer: "CAPCOM CO., LTD.",
+    overview: "ベイカー邸での惨劇から数年…事件から生還したイーサン・ウィンターズは対バイオテロ部隊”BSAA”の庇護の下．妻のミアそして愛娘のローズと平穏な日々を過ごしていた．しかし，幸せな生活はBSAA隊長クリス・レッドフィールドの襲撃によって破られる．奪われた娘を取り戻すため，イーサンは再び死地へと向かう．",
+    my_comment2: "私の人生の中でいちばん嫌いなものはゾンビです．昔から怖かった...人生の敵を知るためバイオハザードシリーズを見始めました．今までたくさんの作品がある中，ヴィレッジはついにゾンビっぽくなくなりました．吸血鬼のお姉さんがとても綺麗です．",
+    image: "/images/bio8.jpg"
+  },
+  {
+    number: "004",
+    game_name: "Baldi's Basics Classic Remastered",
+    developer: "Basically Games",
+    overview: "バルディの学校から再び脱出せよ！ステルスと戦略を駆使し，7冊のノートをすべて集めて勝利を掴め！",
+    my_comment2: "頭が禿げているバルディ先生．狂気の授業と探し続ける出口...このゲームの魅力はさまざまなゲームモードやエンディングがあることです．最初はただの脱出ゲームだったのに...",
+    image: "/images/baldi.jpg"
+  }
+];
+
+// 1. 一覧表示 (廊下)
+app.get("/horage", (req, res) => {
+  res.render("horage", { horage: horage });
+});
+
+// 2. 新規登録画面
+app.get("/horage/create", (req, res) => {
+  res.render("horage_create");
+});
+
+// 新規登録処理
+app.post("/horage/create", (req, res) => {
+  const newGame = {
+    number: req.body.number,
+    game_name: req.body.game_name,
+    developer: req.body.developer,
+    overview: req.body.overview,
+    my_comment2: req.body.my_comment2,
+    image: req.body.image || "/images/default_horror.jpg" // 画像がなければデフォルト
+  };
+  horage.push(newGame);
+  // 番号順にソートしておくと廊下で綺麗に並びます
+  horage.sort((a, b) => a.number.localeCompare(b.number));
+  res.redirect("/horage");
+});
+
+// 3. 詳細表示 (部屋の中)
+app.get("/horage/:number", (req, res) => {
+  const number = req.params.number;
+  // numberが一致するデータを検索
+  const item = horage.find(game => game.number === number);
+
+  if (item) {
+    res.render("horage_detail", { data: item });
+  } else {
+    res.send("その部屋は存在しないようだ...");
+  }
+});
+
+// 4. 編集画面
+app.get("/horage/:number/edit", (req, res) => {
+  const number = req.params.number;
+  const item = horage.find(game => game.number === number);
+  if (item) {
+    res.render("horage_edit", { data: item });
+  } else {
+    res.redirect("/horage");
+  }
+});
+
+// 更新処理
+app.post("/horage/:number/update", (req, res) => {
+  const targetNumber = req.params.number;
+  const index = horage.findIndex(game => game.number === targetNumber);
+  
+  if (index !== -1) {
+    // 既存データの更新（numberは変更しない想定ですが、必要なら変えてもOK）
+    horage[index].game_name = req.body.game_name;
+    horage[index].developer = req.body.developer;
+    horage[index].overview = req.body.overview;
+    horage[index].my_comment2 = req.body.my_comment2;
+    horage[index].image = req.body.image;
+    
+    res.redirect("/horage/" + targetNumber);
+  } else {
+    res.redirect("/horage");
+  }
+});
+
+// 5. 削除処理
+app.post("/horage/:number/delete", (req, res) => {
+  const targetNumber = req.params.number;
+  const index = horage.findIndex(game => game.number === targetNumber);
+  
+  if (index !== -1) {
+    horage.splice(index, 1);
+  }
+  res.redirect("/horage");
 });
 
 
