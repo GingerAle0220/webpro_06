@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>本を追加する</title>
+    <link rel="stylesheet" href="/css/books.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="form-paper">
+            <h2 class="form-title">新しい本を登録</h2>
+            
+            <form action="/books/create" method="POST">
+                
+                <div class="form-group">
+                    <label>本の題名 (book_name)</label>
+                    <input type="text" name="book_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>作者 (writer)</label>
+                    <input type="text" name="writer" required>
+                </div>
+
+                <div class="form-group">
+                    <label>出版社 (publisher)</label>
+                    <input type="text" name="publisher">
+                </div>
+
+                <div class="form-group">
+                    <label>出版年 (year)</label>
+                    <input type="text" name="year">
+                </div>
+
+                <div class="form-group">
+                    <label>画像パス (images2)</label>
+                    <input type="text" name="images2" placeholder="/images/ファイル名.jpg">
+                </div>
+
+                <div class="form-group">
+                    <label>あらすじ (book_overview)</label>
+                    <textarea name="book_overview" rows="5"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>コメント (my_comment3)</label>
+                    <textarea name="my_comment3" rows="3"></textarea>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="/books" class="btn">キャンセル</a>
+                    <button type="submit" class="btn btn-primary">登録する</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

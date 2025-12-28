@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book Shelf</title>
+    <link rel="stylesheet" href="/css/books.css">
+</head>
+<body>
+
+    <div class="shelf-container">
+        
+        <!-- ページタイトル -->
+        <div class="page-title">
+            <h1>オススメの本紹介</h1>
+        </div>
+
+        <!-- 横スクロールエリア -->
+        <div class="scroll-wrapper">
+            
+            <% books.forEach(function(item) { %>
+                <div class="book-card-wrapper">
+                    <!-- 本をクリックで詳細へ -->
+                    <a href="/books/<%= item.id %>" class="book-card">
+                        <img src="<%= item.images2 %>" alt="<%= item.book_name %>" class="book-cover">
+                    </a>
+                    
+                    <!-- 削除ボタン -->
+                    <form action="/books/<%= item.id %>/delete" method="POST" class="delete-form" onsubmit="return confirm('この本を書架から削除しますか？');">
+                        <button type="submit" class="delete-btn">削除</button>
+                    </form>
+                </div>
+            <% }); %>
+
+            <!-- 新規追加ボタン (最後に追加) -->
+            <a href="/books/create" class="add-book-card">
+                <div>
+                    <span class="add-icon">+</span>
+                    <span class="add-text">新しい本を<br>追加する</span>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

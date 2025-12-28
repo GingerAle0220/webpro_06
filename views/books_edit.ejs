@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>編集: <%= data.book_name %></title>
+    <link rel="stylesheet" href="/css/books.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="form-paper">
+            <h2 class="form-title">情報を編集</h2>
+            
+            <form action="/books/<%= data.id %>/update" method="POST">
+                
+                <div class="form-group">
+                    <label>本の題名</label>
+                    <input type="text" name="book_name" value="<%= data.book_name %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label>作者</label>
+                    <input type="text" name="writer" value="<%= data.writer %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label>出版社</label>
+                    <input type="text" name="publisher" value="<%= data.publisher %>">
+                </div>
+
+                <div class="form-group">
+                    <label>出版年</label>
+                    <input type="text" name="year" value="<%= data.year %>">
+                </div>
+
+                <div class="form-group">
+                    <label>画像パス</label>
+                    <input type="text" name="images2" value="<%= data.images2 %>">
+                </div>
+
+                <div class="form-group">
+                    <label>あらすじ</label>
+                    <textarea name="book_overview" rows="5"><%= data.book_overview %></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>コメント</label>
+                    <textarea name="my_comment3" rows="3"><%= data.my_comment3 %></textarea>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="/books/<%= data.id %>" class="btn">キャンセル</a>
+                    <button type="submit" class="btn btn-primary">更新する</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -13,19 +13,19 @@ graph TD
     public --> images{images/}
 
     %% cssフォルダ
-    css --> cssFile(akunai.css)
+    css --> cssFile(books.css)
 
     %% imagesフォルダ
-    images --> img1(ウィシャデル.jpg)
-    images --> img2(アイリーニ.jpg)
-    images --> img3(血掟テキサス.jpg)
-    images --> imgEtc(... 他キャラクター画像)
+    images --> img1(キノの旅.jpg)
+    images --> img2(オーバーロード.jpg)
+    images --> img3(ハーモニー.jpg)
+    images --> imgEtc(... 他ホラゲーイメージ画像および背景画像)
 
     %% viewsフォルダの中身
-    views --> v1(akunai.ejs)
-    views --> v2(akunai_detail.ejs)
-    views --> v3(akunai_create.ejs)
-    views --> v4(akunai_edit.ejs)
+    views --> v1(books.ejs)
+    views --> v2(books_detail.ejs)
+    views --> v3(books_create.ejs)
+    views --> v4(books_edit.ejs)
 
     %% ノードのスタイル設定（フォルダを黄色、ファイルを青っぽくなど）
     style root fill:#f9f,stroke:#333,stroke-width:2px

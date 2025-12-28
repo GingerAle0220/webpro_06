@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= data.book_name %></title>
+    <link rel="stylesheet" href="/css/books.css">
+</head>
+<body>
+
+    <div class="detail-container">
+        
+        <!-- メインのボード -->
+        <div class="detail-board">
+            
+            <!-- 左カラム：書影とデータ -->
+            <div class="left-column">
+                <img src="<%= data.images2 %>" alt="<%= data.book_name %>" class="detail-cover">
+                
+                <h1 class="book-title"><%= data.book_name %></h1>
+                
+                <ul class="book-meta">
+                    <li>
+                        <span class="meta-label">著者:</span> <%= data.writer %>
+                    </li>
+                    <li>
+                        <span class="meta-label">出版社:</span> <%= data.publisher %>
+                    </li>
+                    <li>
+                        <span class="meta-label">出版年:</span> <%= data.year %>年
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 右カラム：概要とコメント -->
+            <div class="right-column">
+                
+                <!-- 概要 -->
+                <div>
+                    <h3 class="section-title">あらすじ</h3>
+                    <p class="text-content">
+                        <%= data.book_overview %>
+                    </p>
+                </div>
+
+                <!-- コメント -->
+                <div>
+                    <h3 class="section-title">編集者コメント</h3>
+                    <div class="comment-box">
+                        <%= data.my_comment3 %>
+                    </div>
+                </div>
+
+                <!-- ボタン -->
+                <div class="action-buttons">
+                    <a href="/books" class="btn">一覧へ戻る</a>
+                    <a href="/books/<%= data.id %>/edit" class="btn btn-primary">編集する</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

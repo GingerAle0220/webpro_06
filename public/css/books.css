@@ -1,0 +1,369 @@
+@charset "UTF-8";
+
+/* --- 全体設定 --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    color: #333;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* =========================================
+   一覧ページ (Books Shelf on Desk)
+   ========================================= */
+.shelf-container {
+    /* 背景画像設定 */
+    background-image: url('../images/tukue.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* スクロールしても背景固定 */
+    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden; /* コンテナからはみ出さない */
+    position: relative;
+}
+
+/* タイトルエリア */
+.page-title {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 30px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+.page-title h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #5d4037;
+}
+
+/* 横スクロールエリア */
+.scroll-wrapper {
+    display: flex;
+    align-items: center;
+    overflow-x: auto; /* 横スクロール有効 */
+    padding: 0 50px;
+    height: 70%; /* 高さを確保 */
+    gap: 60px; /* 本の間隔 */
+    
+    /* スクロールバーのカスタマイズ (Webkit系) */
+    scrollbar-width: thin;
+    scrollbar-color: #8d6e63 transparent;
+}
+.scroll-wrapper::-webkit-scrollbar {
+    height: 10px;
+}
+.scroll-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: #8d6e63;
+    border-radius: 10px;
+}
+
+/* 本のカード */
+.book-card {
+    flex: 0 0 auto; /* 縮小しない */
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 本が少し浮いているような影 */
+    filter: drop-shadow(5px 10px 10px rgba(0,0,0,0.5));
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+.book-cover {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 2px 5px 5px 2px; /* 本の背表紙っぽく */
+    box-shadow: inset 3px 0 5px rgba(0,0,0,0.2); /* 背表紙の陰影 */
+}
+
+/* 削除ボタン */
+.delete-form {
+    margin-top: 15px;
+    width: 100%;
+}
+.delete-btn {
+    width: 100%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #d32f2f;
+    color: #d32f2f;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+.delete-btn:hover {
+    background: #d32f2f;
+    color: white;
+}
+
+/* 新規追加ボタン（プラスマークの本） */
+.add-book-card {
+    width: 220px;
+    height: 320px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 3px dashed #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+.add-book-card:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+.add-icon {
+    font-size: 4rem;
+    font-weight: bold;
+    display: block;
+}
+.add-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   詳細ページ (Cafe Style)
+   ========================================= */
+.detail-container {
+    background-image: url('../images/kafe.jpeg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* コンテンツ全体を囲む半透明の白いボード */
+.detail-board {
+    background: rgba(255, 250, 240, 0.95); /* クリーム色の紙っぽい背景 */
+    width: 100%;
+    max-width: 1000px;
+    min-height: 600px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 8px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 装飾的なライン */
+.detail-board::before {
+    content: '';
+    position: absolute;
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    border: 1px solid #8d6e63;
+    pointer-events: none;
+    border-radius: 4px;
+}
+
+/* 左カラム：画像と基本情報 */
+.left-column {
+    width: 40%;
+    padding: 50px 30px;
+    border-right: 1px solid #d7ccc8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.detail-cover {
+    width: 80%;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    margin-bottom: 25px;
+    transform: rotate(-2deg); /* 少し傾けて置いた感じに */
+}
+
+.book-title {
+    font-size: 1.6rem;
+    color: #3e2723;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.book-meta {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    color: #5d4037;
+    line-height: 1.8;
+    text-align: left;
+    width: 100%;
+}
+.book-meta li {
+    border-bottom: 1px dotted #a1887f;
+    padding: 5px 0;
+}
+.meta-label {
+    font-weight: bold;
+    color: #8d6e63;
+    margin-right: 10px;
+}
+
+/* 右カラム：概要とコメント */
+.right-column {
+    width: 60%;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    color: #8d6e63;
+    border-bottom: 2px solid #8d6e63;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.text-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #4e342e;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.comment-box {
+    background: #efebe9;
+    padding: 20px;
+    border-radius: 4px;
+    border-left: 4px solid #8d6e63;
+    font-style: italic;
+    color: #5d4037;
+}
+
+/* ボタンエリア */
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 10px 25px;
+    border: 1px solid #8d6e63;
+    color: #5d4037;
+    background: transparent;
+    border-radius: 20px;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+.btn:hover {
+    background: #8d6e63;
+    color: #fff;
+}
+.btn-primary {
+    background: #8d6e63;
+    color: #fff;
+}
+.btn-primary:hover {
+    background: #5d4037;
+    border-color: #5d4037;
+}
+
+
+/* =========================================
+   フォーム画面 (Create & Edit)
+   ========================================= */
+.form-container {
+    background-image: url('../images/kafe.jpg'); /* 詳細と同じ背景 */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.form-paper {
+    background: #fffbf0;
+    padding: 50px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    position: relative;
+}
+/* 紙の上部のクリップ風装飾（簡易的） */
+.form-paper::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 30px;
+    background: #5d4037;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.form-title {
+    text-align: center;
+    color: #3e2723;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    border-bottom: 1px double #8d6e63;
+    padding-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #5d4037;
+    font-weight: bold;
+}
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d7ccc8;
+    background: #fafafa;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+.form-group textarea {
+    resize: vertical;
+}
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: #8d6e63;
+    background: #fff;
+}
